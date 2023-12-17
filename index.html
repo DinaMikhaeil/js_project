@@ -1,0 +1,142 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fontawesome-free-6.5.1-web/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>Our website</title>
+</head>
+<body onload="load_home()">
+    <header>
+        <a href="index.html"><img src="logo.png" width="90px" height="90px"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="aboutus.html">About</a></li>
+                <li><a href="ContactUs.html">Contact</a></li>
+                <li class="headerIcons"><i class="fa-regular fa-user" title="Profile" id="profile" ></i></li>
+                <div id="profilePopup" class="popup">
+                    <div class="profileContent">
+                      <i class="fas fa-times" id="closeButton"></i>
+                      <img id="profileImage" src="post-img2.jpg" alt="Profile Image" />
+                      <h2 id="userName">User Name</h2>
+                      <p id="userEmail">user@example.com</p>
+                      <button onclick="window.location.href='feedback.html';"class="signOutButton">feedback</button>
+                      <button id="signOutButton">Sign Out</button>
+                    </div>
+                  </div>
+                <li class="headerIcons"><a href="#" title="Cart" id="cart" onclick="return user_logged_in_cart()"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                <li class="headerIcons"><a href="#" title="Wishlist" id="wishlist" onclick="return user_logged_in_wish()"><i class="fa-regular fa-heart"></i></a></li>
+                <li class="headerIcons"><a href="#" title="orders" id="orders" onclick="return go_to_orders()"><i class="fa-solid fa-list-check"></i></a></li>
+            
+            </ul>
+        </div>
+      </header>
+    <section id="hero">
+        <h1>Original. Modern. Awesome!</h1>
+        <p>Shop Our New Collection Now!</p>
+        <br />
+        <button onclick="go_to_shop()">Shop Now</button>
+    </section>
+    <section id="featured">
+        <h1>Featured Products</h1>
+        <section id="product_sec">
+           <!--  <div class="product_small">
+                <img src="product_test_img.jpg" id="featured_product_img" onclick="redirect_to_product_page()">
+                <div class="product_small_details">
+                    <h3 id="featured_product_name" onclick="redirect_to_product_page()">Jacket10</h3>
+                    <h5>500$</h5>
+                    <div class="product_small_details_icons">
+                        <i title="Add To Cart" class="fa-solid fa-cart-shopping"></i>
+                        <i title="Add To Wishlist" class="fa-regular fa-heart"></i>
+                    </div>
+                </div>
+            </div>-->
+        </section>
+        <button onclick="go_to_shop()">View All Products</button>
+        <hr />
+    </section>
+    <!--All goes to shop page without filteration-->
+    <section id="Categories">
+        <h1>Categories</h1>
+        <div id="categoriesDiv">
+            <div class="categories_card1">
+                <h2>Jackets</h2>
+                <button onclick="go_to_shop()">Shop Now</button>
+            </div>
+            <div class="categories_card2">
+                <h1>T-shirts</h1>
+                <button onclick="go_to_shop()">Shop Now</button>
+            </div>
+            <div class="categories_card3">
+                <h1>Hoodies</h1>
+                <button onclick="go_to_shop()">Shop Now</button>
+            </div>
+        <a href="shop.html">See All Products <i class="fa-solid fa-arrow-right"></i></a>
+        <button onclick="go_to_categroyAddEditPage()" id="add_edit_category_button">Add/Edit Category</button>
+        </div>
+    </section>
+    
+    <footer>
+        <p>Copyrights &copy;2023. All Rights Reserved. — Designed by our Team</p>
+        <ul id="footer_bar">
+            <li>Follow Us</li>
+            <li><a href="https://www.facebook.com" title="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+            <li><a href="https://www.x.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a></li>
+            <li><a href="https://www.instagram.com" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+        </ul>
+    </footer>
+    <script>
+
+         // Get elements
+         const profile = document.getElementById("profile");
+         const profilePopup = document.getElementById("profilePopup");
+         const signOutButton = document.getElementById("signOutButton");
+         const closeButton = document.getElementById("closeButton");
+         const userNameElement = document.getElementById("userName");
+         const userEmailElement = document.getElementById("userEmail");
+   
+         // Function to update profile information
+         function updateProfileInfo() {
+           // Retrieve username and email from session storage
+           const storedUsername = sessionStorage.getItem("username");
+           const storedEmail = sessionStorage.getItem("email");
+   
+           // Update the profile pop-up elements with the retrieved values
+           userNameElement.textContent = storedUsername || "User Name";
+           userEmailElement.textContent = storedEmail || "user@example.com";
+         }
+   
+         // Show profile pop-up
+         profile.addEventListener("click", () => {
+            if(sessionStorage.getItem("username") != null){
+                updateProfileInfo(); // Call the function to update profile information
+                profilePopup.style.display = "block";                }
+            else{
+                window.location.href = "http://127.0.0.1:5502/login.html";
+                }
+           
+         });
+   
+         closeButton.addEventListener("click", () => {
+           profilePopup.style.display = "none";
+         });
+   
+         // Hide profile pop-up
+         signOutButton.addEventListener("click", () => {
+           // Perform sign-out actions here (e.g., clear session, show a confirmation message, etc.)
+           // Example: Clear session storage
+           sessionStorage.clear();
+   
+           // Show a confirmation message (optional)
+           alert("You have been signed out successfully.");
+   
+           // Redirect the user to a different page after signing out
+           window.location.href = "http://127.0.0.1:5502/login.html";
+         });
+      </script>
+</body>
+</html>

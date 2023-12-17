@@ -1,0 +1,65 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="EditProduct.css">
+    <title>Add/Edit Products</title>
+</head>
+
+<body onload="check_if_edit()">
+    <header></header>
+    <div class="container">
+        <div class="form-content">
+            <h2>Add/Edit Product</h2>
+            <form action="Product.html" method="get" >
+                <div class="input-field">
+                    <input type="text" required id="product_name" name="product_name">
+                    <label for="product_name">Product Name</label>
+                </div>
+                <br />
+                <div>
+                    <label for="product_image">Image:</label>
+                    <input type="file" required name="product_image" accept="image/png, image/jpg, image/jpeg" onchange="validateFileType()" id="product_image">
+                </div>
+                <div class="input-field">
+                    <select name="product_category" id="product_category">
+                        <!-- <option value="Jackets">Jackets</option>
+                        <option value="Hoodies">Hoodies</option>
+                        <option value="Jeans">Jeans</option>
+                        <option value="Shoes">Shoes</option> -->
+                    </select>
+                </div>
+                <div class="input-field">
+                    <input type="number" required min="0" id="product_price" name="product_price">
+                    <label for="product_price">Product Price</label>
+                </div>
+                <br />
+                <div class="input-field">
+                    <input type="text" required name="product_description" id="product_description">
+                    <label for="product_description">Product Description</label>
+                </div>
+                <div class="input-field">
+                    <input type="number" required min="0" name="stock_quantity" id="stock_quantity">
+                    <label for="">Stock Quantity</label>
+                </div>
+                <button type="submit" onclick="return save_product()">Confirm</button>
+                <button onclick="go_to_shop(event)">Cancel</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function validateFileType(){
+            var fileName = document.getElementById("product_image").value;
+            var idxDot = fileName.lastIndexOf(".") + 1;
+            var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+            if (extFile !="jpg" && extFile !="jpeg" && extFile!="png"){
+                alert("Only image files are allowed!");
+                document.getElementById("product_image").value = null;   
+        }
+    }
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>

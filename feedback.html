@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    /> -->
+    <link rel="stylesheet" href="css/all.min.css" />
+    <title>Feedback Ui Design</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #f2f9f2;
+        font-family: "Montserrat", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+      }
+
+      .panel-container {
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+        font-size: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+        max-width: 400px;
+      }
+
+      .panel-container strong {
+        line-height: 20px;
+      }
+
+      .ratings-container {
+        display: flex;
+        margin: 20px 0;
+      }
+
+      .rating {
+        flex: 1;
+        cursor: pointer;
+        padding: 20px;
+        margin: 10px 5px;
+      }
+
+      .rating:hover,
+      .rating.active {
+        border-radius: 4px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .rating small {
+        color: #555;
+        display: inline-block;
+        margin: 10px 0 0;
+      }
+
+      .rating:hover small,
+      .rating:active small {
+        color: #111;
+      }
+
+      .btn {
+        background-color: #302d2b;
+        color: #fff;
+        border: 0;
+        border-radius: 4px;
+        padding: 12px 30px;
+        cursor: pointer;
+      }
+
+      .btn:focus {
+        outline: none;
+      }
+
+      .btn:active {
+        transform: scale(0.98);
+      }
+
+      .fa-heart {
+        color: red;
+        font-size: 30px;
+        margin-bottom: 10px;
+      }
+      i {
+        font-size: 40px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="panel" class="panel-container">
+      <strong
+        >How satisfied are you with our <br />
+        Customer Support Performance</strong
+      >
+      <div class="ratings-container">
+        <div class="rating">
+          <i class="fa-regular fa-face-frown"></i>
+          <small>Unhappy</small>
+        </div>
+
+        <div class="rating">
+          <i class="fa-regular fa-face-meh"></i>
+          <small>Neutral</small>
+        </div>
+
+        <div class="rating active">
+          <i class="fa-regular fa-face-grin-squint"></i>
+          <small>Satisfied</small>
+        </div>
+      </div>
+      <label for="comment">Additional Comments:</label>
+      <textarea id="comment" rows="4" cols="50"></textarea>
+      <button class="btn" id="send">Send Review</button>
+    </div>
+    <!-- <script>
+
+      const ratings = document.querySelectorAll(".rating");
+      const rContainer = document.querySelector(".ratings-container");
+      const sendBtn = document.querySelector("#send");
+      const panel = document.querySelector("#panel");
+      let selectedRating = "Satisfied";
+
+      rContainer.addEventListener("click", (e) => {
+        if (e.target.parentNode.classList.contains("rating")) {
+          removeActive();
+          e.target.parentNode.classList.add("active");
+          selectedRating = e.target.nextElementSibling.innerHTML;
+        }
+      });
+
+      sendBtn.addEventListener("click", (e) => {
+        // Store the review in local storage
+        const feedback = {
+          rating: selectedRating,
+          comment: document.getElementById("comment").value,
+        };
+        const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+        reviews.push(feedback);
+        localStorage.setItem("reviews", JSON.stringify(reviews));
+
+        // Navigate to massage.html
+        window.location.href = "massage.html";
+      });
+
+      function removeActive() {
+        for (let i = 0; i < ratings.length; i++) {
+          ratings[i].classList.remove("active");
+        }
+      }
+    </script> -->
+
+<!-- ... (your HTML code remains unchanged) ... -->
+
+<script>
+  const ratings = document.querySelectorAll(".rating");
+  const rContainer = document.querySelector(".ratings-container");
+  const sendBtn = document.querySelector("#send");
+  const panel = document.querySelector("#panel");
+
+  // Load existing reviews from local storage
+  const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+  // Display statistics on "massage.html"
+  const displayStatistics = () => {
+    const statisticsContainer = document.createElement("div");
+    statisticsContainer.innerHTML = "<h2>Feedback Statistics</h2>";
+
+    const ratingsCount = {
+      Unhappy: 0,
+      Neutral: 0,
+      Satisfied: 0,
+    };
+
+    reviews.forEach((review) => {
+      ratingsCount[review.rating]++;
+    });
+
+    for (const rating in ratingsCount) {
+      const ratingElement = document.createElement("p");
+      ratingElement.innerHTML = `<strong>${rating}:</strong> ${ratingsCount[rating]} users`;
+      statisticsContainer.appendChild(ratingElement);
+    }
+
+    document.body.appendChild(statisticsContainer);
+  };
+
+  // Check if the current page is "massage.html" and display statistics
+  if (window.location.href.includes("massage.html")) {
+    displayStatistics();
+  }
+
+  rContainer.addEventListener("click", (e) => {
+    if (e.target.parentNode.classList.contains("rating")) {
+      removeActive();
+      e.target.parentNode.classList.add("active");
+      selectedRating = e.target.nextElementSibling.innerHTML;
+    }
+  });
+
+  sendBtn.addEventListener("click", (e) => {
+    // Store the review in local storage
+    const feedback = {
+      rating: selectedRating,
+      comment: document.getElementById("comment").value,
+    };
+    reviews.push(feedback);
+    localStorage.setItem("reviews", JSON.stringify(reviews));
+
+    // Navigate to massage.html
+    window.location.href = "massage.html";
+  });
+
+  function removeActive() {
+    for (let i = 0; i < ratings.length; i++) {
+      ratings[i].classList.remove("active");
+    }
+  }
+</script>
+
+  </body>
+</html>

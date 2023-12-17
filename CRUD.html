@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="CRUD.css" />
+    <link rel="stylesheet" href="fontawesome-free-6.5.1-web/css/all.min.css" />
+  </head>
+  <body onload="readAll()">
+   <!--  <header>
+      <a href="index.html"><img src="logo.png" width="90px" height="90px"></a>
+      <div>
+          <ul id="navbar">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="shop.html">Shop</a></li>
+              <li><a href="final/about/aboutus.html">About</a></li>
+              <li><a href="final/Contact-Form/contact/index.html">Contact</a></li>
+              <li class="headerIcons"><a href="/final/profile/pro2.html" title="Profile"><i class="fa-regular fa-user"></i></a></li>
+              <li class="headerIcons"><a href="cart.html" title="Cart"><i class="fa-solid fa-cart-shopping"></i></a></li>
+              <li class="headerIcons"><a href="wishlist.html" title="Wishlist"><i class="fa-regular fa-heart"></i></a></li>
+              <li class="headerIcons"><a href="allOrders.html" title="orders"><i class="fa-solid fa-list-check"></i></a></li>
+          
+          </ul>
+      </div>
+  </header> -->
+    <div class="container">
+      <div class="form_container">
+        <form action="" class="create_form">
+          <label for="cars">Category Name :</label>
+          <input list="brow"  class="name" id="name">
+          <datalist id="brow">
+            <option value="Jackets">
+            <option value="Shirts">
+            <option value="T-shirts">
+            <option value="Hoodies">
+            <option value="Jeans">
+            <option value="Shorts">
+            <option value="Accessories">
+            <option value="Shoes">
+            <option value="Sports Shoes">
+            <option value="Sandals">
+            <option value="Formal Shirts">
+            <option value="Sweater">
+            <option value="Party Waer">
+            <option value="Night Wear">
+            <option value="Skirts">
+          </datalist>
+          <!-- <input type="text" placeholder="enter category name" class="name" /> -->
+          <!-- <input type="text" placeholder="enter category price" class="price" /> -->
+          <button type="button" id="create" onclick="add()">Create</button>
+          
+        </form>
+        <form action="" class="update_form">
+          <input type="text" hidden class="update_id" />
+
+          <label for="cars">Category Name :</label>
+          <input list="brow"  class="uname" id="uname">
+          <datalist id="brow">
+            <option value="Jackets">
+            <option value="Shirts">
+            <option value="T-shirts">
+            <option value="Hoodies">
+            <option value="Jeans">
+            <option value="Shorts">
+            <option value="Accessories">
+            <option value="Shoes">
+            <option value="Sports Shoes">
+            <option value="Sandals">
+            <option value="Formal Shirts">
+            <option value="Sweater">
+            <option value="Party Waer">
+            <option value="Night Wear">
+            <option value="Skirts">
+          </datalist>
+
+          <!-- <input type="text" placeholder="Enter name category" class="uname" /> -->
+          <!-- <input
+            type="text"
+            placeholder="Enter price category"
+            class="uprice"
+          /> -->
+          <button type="button" onclick="update()">Update</button>
+        </form>
+        <br>
+        <button class="addbtn" id="addbtn" onclick="createForm()">Add+</button>
+        <br />
+
+        <table class="table">
+          <thead>
+            <th>Name</th>
+            <!-- <th>Price</th> -->
+            <th>Action</th>
+          </thead>
+          <tbody class="table_data"></tbody>
+        </table>
+      </div>
+    </div>
+    <!-- <footer style="width: 100%;">
+      <p>Copyrights &copy;2023. All Rights Reserved. — Designed by our Team</p>
+      <ul id="footer_bar">
+          <li>Follow Us</li>
+          <li><a href="https://www.facebook.com" title="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+          <li><a href="https://www.x.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a></li>
+          <li><a href="https://www.instagram.com" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+      </ul>
+  </footer> -->
+    <script src="CRUD.js"></script>
+    
+    <!-- <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+      import { getDatabase,ref,set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyAxa6hmmHJ_Uxsb1eM6s_GBNUGOjFVEpSI",
+        authDomain: "edit-category.firebaseapp.com",
+        projectId: "edit-category",
+        storageBucket: "edit-category.appspot.com",
+        messagingSenderId: "1001473177581",
+        appId: "1:1001473177581:web:63af364025428be8c619e4"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database=getDatabase(app);
+      sub.addEventListener('click',(e)=>{
+        
+        var name=document.getElementById("name").value;
+        set(ref(database,'categories/' + name ),{
+              name:name,
+        });
+        alert('save');
+      });
+    </script> -->
+  </body>
+</html>

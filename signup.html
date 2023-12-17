@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="signup.css">
+    <title>Signup</title>
+</head>
+
+<body>
+    <header></header>
+    <div class="container">
+        <div class="form-details">
+            <h2>Welcome</h2>
+            <p>Please log in using your personal information to stay connected with us.</p>
+        </div>
+        <div class="form-content">
+            <h2>Signup</h2>
+            <form action="" id="form">
+                <div class="input-field">
+                    <input type="text" id="username" required>
+                    <label>User Name</label>
+                </div>
+                <div class="input-field">
+                    <input type="email" id="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="password" required>
+                    <label>Password</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="confirmPassword" onblur="checkpassword()" required>
+                    <label>Confirm Password</label>
+                </div>
+
+                <div class="input-field">
+                    <select name="" id="admin">
+                        <option>User</option>
+                        <option>Admin</option>
+                    </select>
+                </div>
+                <button onclick="save()">Signup</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function save() {
+            var username = document.getElementById("username").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var form = document.getElementById("form");
+            var isadmin = document.getElementById("admin");
+            var user = new Array();
+            user = JSON.parse(localStorage.getItem("users")) ? JSON.parse(localStorage.getItem("users")) : []
+            if (user.some((v) => {
+                return v.email == email;
+            })) {
+                alert("duolicate Data");
+            }
+            else {
+                alert("if you want to be admin contact us please");
+                user.push({
+                    name: username,
+                    email: email,
+                    password: password,
+                    isadmin: isadmin.options[isadmin.selectedIndex].text
+                })
+                sessionStorage.setItem("username", username);
+                sessionStorage.setItem("email", email);
+                sessionStorage.setItem("isadmin", isadmin.options[isadmin.selectedIndex].text);
+                window.open("index.html");
+                window.close();
+
+            }
+            var json = JSON.stringify(user);
+            localStorage.setItem("users", json);
+        }
+
+        function checkpassword() {
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+            if (password.length != 0) {
+                if (password == confirmPassword) {
+                    alert("Password match");
+                }
+                else {
+                    alert("Please enter the smae password in two password filed");
+                }
+            } else {
+                alert("Password is required to complete registration");
+            }
+        }
+    </script>
+</body>
+
+</html>

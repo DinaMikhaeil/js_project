@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>about us</title>
+    <link rel="stylesheet" href="style_about.css" />
+    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/all.min.css">
+  </head>
+  <body>
+    <header>
+      <a href="index.html"><img src="logo.png" width="90px" height="90px"></a>
+      <div>
+          <ul id="navbar">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="shop.html">Shop</a></li>
+              <li><a href="aboutus.html">About</a></li>
+              <li><a href="ContactUs.html">Contact</a></li>
+              <li class="headerIcons"><i class="fa-regular fa-user" title="Profile" id="profile" ></i></li>
+              <div id="profilePopup" class="popup">
+                  <div class="profileContent">
+                    <i class="fas fa-times" id="closeButton"></i>
+                    <img id="profileImage" src="post-img2.jpg" alt="Profile Image" />
+                    <h2 id="userName">User Name</h2>
+                    <p id="userEmail">user@example.com</p>
+                    <button onclick="window.location.href='feedback.html';"class="signOutButton">feedback</button>
+                    <button id="signOutButton">Sign Out</button>
+                  </div>
+                </div>
+              <li class="headerIcons"><a href="#" title="Cart" id="cart" onclick="return user_logged_in_cart()"><i class="fa-solid fa-cart-shopping"></i></a></li>
+              <li class="headerIcons"><a href="#" title="Wishlist" id="wishlist" onclick="return user_logged_in_wish()"><i class="fa-regular fa-heart"></i></a></li>
+              <li class="headerIcons"><a href="#" title="orders" id="orders" onclick="return go_to_orders()"><i class="fa-solid fa-list-check"></i></a></li>
+          
+          </ul>
+      </div>
+    </header>
+    <div class="section">
+      <div class="container">
+        <div class="cintent-section">
+            <div></div>
+          <div class="title">
+            <h1>About Us</h1>
+          </div>
+          <div class="content">
+            <h3>Lorem ipsum dolor sit amet consectetur adipisicing.</h3>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Architecto vitae, optio illo dignissimos ipsum esse consequuntur
+              cupiditate facilis maiores commodi dolorem praesentium minus
+              veniam ipsam adipisci alias repudiandae! Quaerat eveniet magni
+              dolorum velit impedit sint quos ipsa molestias exercitationem
+              perspiciatis aspernatur tempora, neque incidunt perferendis quas,
+              quod unde odit temporibus!
+            </p>
+            <div class="button">
+              <button>
+                <a href="../massage.html">Read More</a>
+              </button>
+            </div>
+            <div class="social">
+              <a href=""><i class="fa-brands fa-facebook"></i></a>
+              <a href=""><i class="fa-brands fa-square-twitter"></i></a>
+              <a href=""><i class="fa-brands fa-square-instagram"></i></a>
+            </div>
+          </div>
+          <div class="image">
+            <img src="images/single-image1.jpg" alt="" />
+          </div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p>Copyrights &copy;2023. All Rights Reserved. — Designed by our Team</p>
+      <ul id="footer_bar">
+          <li>Follow Us</li>
+          <li><a href="https://www.facebook.com" title="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+          <li><a href="https://www.x.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a></li>
+          <li><a href="https://www.instagram.com" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+      </ul>
+  </footer>
+  <script>
+
+    // Get elements
+    const profile = document.getElementById("profile");
+    const profilePopup = document.getElementById("profilePopup");
+    const signOutButton = document.getElementById("signOutButton");
+    const closeButton = document.getElementById("closeButton");
+    const userNameElement = document.getElementById("userName");
+    const userEmailElement = document.getElementById("userEmail");
+
+    // Function to update profile information
+    function updateProfileInfo() {
+      // Retrieve username and email from session storage
+      const storedUsername = sessionStorage.getItem("username");
+      const storedEmail = sessionStorage.getItem("email");
+
+      // Update the profile pop-up elements with the retrieved values
+      userNameElement.textContent = storedUsername || "User Name";
+      userEmailElement.textContent = storedEmail || "user@example.com";
+    }
+
+    // Show profile pop-up
+    profile.addEventListener("click", () => {
+       if(sessionStorage.getItem("username") != null){
+           updateProfileInfo(); // Call the function to update profile information
+           profilePopup.style.display = "block";                }
+       else{
+           window.location.href = "http://127.0.0.1:5502/login.html";
+           }
+      
+    });
+
+    closeButton.addEventListener("click", () => {
+      profilePopup.style.display = "none";
+    });
+
+    // Hide profile pop-up
+    signOutButton.addEventListener("click", () => {
+      // Perform sign-out actions here (e.g., clear session, show a confirmation message, etc.)
+      // Example: Clear session storage
+      sessionStorage.clear();
+
+      // Show a confirmation message (optional)
+      alert("You have been signed out successfully.");
+
+      // Redirect the user to a different page after signing out
+      window.location.href = "http://127.0.0.1:5502/login.html";
+    });
+ </script>
+  <script src="../profile/test.js"></script>
+  </body>
+</html>

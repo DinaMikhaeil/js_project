@@ -1,0 +1,252 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="styleccontact.css" />
+  <link rel="stylesheet" href="css/all.min.css" />
+</head>
+<header>
+  <a href="index.html"><img src="logo.png" width="90px" height="90px"></a>
+  <div>
+      <ul id="navbar">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="aboutus.html">About</a></li>
+          <li><a href="ContactUs.html">Contact</a></li>
+          <li class="headerIcons"><i class="fa-regular fa-user" title="Profile" id="profile" ></i></li>
+          <div id="profilePopup" class="popup">
+              <div class="profileContent">
+                <i class="fas fa-times" id="closeButton"></i>
+                <img id="profileImage" src="post-img2.jpg" alt="Profile Image" />
+                <h2 id="userName">User Name</h2>
+                <p id="userEmail">user@example.com</p>
+                <button onclick="window.location.href='feedback.html';"class="signOutButton">feedback</button>
+                <button id="signOutButton">Sign Out</button>
+              </div>
+            </div>
+          <li class="headerIcons"><a href="#" title="Cart" id="cart" onclick="return user_logged_in_cart()"><i class="fa-solid fa-cart-shopping"></i></a></li>
+          <li class="headerIcons"><a href="#" title="Wishlist" id="wishlist" onclick="return user_logged_in_wish()"><i class="fa-regular fa-heart"></i></a></li>
+          <li class="headerIcons"><a href="#" title="orders" id="orders" onclick="return go_to_orders()"><i class="fa-solid fa-list-check"></i></a></li>
+      
+      </ul>
+  </div>
+</header>
+
+<div></div>
+<div id="emailFormCard" class="card">
+  <div class="image">
+    <img src="images/insta-image6.jpg" alt="img" />
+  </div>
+  <div id="subscribeForm" class="subscribe">
+    <h2>Contact Us</h2>
+    <p>Want to get in touch? Drop a e-mail!</p>
+    <form
+      name="gform"
+      id="gform"
+      enctype="text/plain"
+      action="GOOGLE_FORM_URL"
+      target="hidden_iframe"
+      onsubmit="submitted=true;"
+    >
+      <fieldset>
+        <input
+          style="background: #3c3c44; margin-bottom: 10px"
+          type="text"
+          placeholder="Name"
+          onclick="cl()"
+          name="Google_Entry_ID_Name"
+          id="Google_Entry_ID_Name"
+          required
+        />
+
+        <input
+          style="background: #3c3c44; margin-bottom: 10px"
+          type="email"
+          placeholder="Email"
+          name="Google_Entry_ID_Email"
+          id="Google_Entry_ID_Email"
+          onclick="cl2()"
+          required
+        />
+
+        <textarea
+          name="Google_Entry_ID_TextArea"
+          class="emailFormCard-TextArea"
+          placeholder="How can I help you?"
+          id="Google_Entry_ID_TextArea"
+          cols="30"
+          rows="5"
+          required
+        ></textarea>
+
+        <input type="submit" value="Send" />
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+<iframe name="hidden_iframe" id="hidden_iframe" style="display: none"></iframe>
+<footer>
+  <p>Copyrights &copy;2023. All Rights Reserved. — Designed by our Team</p>
+  <ul id="footer_bar">
+    <li>Follow Us</li>
+    <li>
+      <a href="https://www.facebook.com" title="Facebook"
+        ><i class="fa-brands fa-facebook"></i
+      ></a>
+    </li>
+    <li>
+      <a href="https://www.x.com" title="Twitter"
+        ><i class="fa-brands fa-twitter"></i
+      ></a>
+    </li>
+    <li>
+      <a href="https://www.instagram.com" title="Instagram"
+        ><i class="fa-brands fa-instagram"></i
+      ></a>
+    </li>
+  </ul>
+</footer>
+<!-- <script type="text/javascript">
+  var Google_Entry_ID_Name = "entry.1416717319";
+
+  var Google_Entry_ID_Email = "entry.2145923340";
+
+  var Google_Entry_ID_TextArea = "entry.355339717";
+
+  // Put your Google Form Link Here  (Make sure to use correct link as documented)
+  var Google_Form_Link =
+    "https://docs.google.com/forms/d/e/1FAIpQLSfy-tWg12-h-gbtJbk5g5GTPUpNZg2iML1fPgcAkNgJfqgzMQ/formResponse?";
+</script> -->
+<script>
+
+  // Get elements
+  const profile = document.getElementById("profile");
+  const profilePopup = document.getElementById("profilePopup");
+  const signOutButton = document.getElementById("signOutButton");
+  const closeButton = document.getElementById("closeButton");
+  const userNameElement = document.getElementById("userName");
+  const userEmailElement = document.getElementById("userEmail");
+
+  // Function to update profile information
+  function updateProfileInfo() {
+    // Retrieve username and email from session storage
+    const storedUsername = sessionStorage.getItem("username");
+    const storedEmail = sessionStorage.getItem("email");
+
+    // Update the profile pop-up elements with the retrieved values
+    userNameElement.textContent = storedUsername || "User Name";
+    userEmailElement.textContent = storedEmail || "user@example.com";
+  }
+
+  // Show profile pop-up
+  profile.addEventListener("click", () => {
+     if(sessionStorage.getItem("username") != null){
+         updateProfileInfo(); // Call the function to update profile information
+         profilePopup.style.display = "block";                }
+     else{
+         window.location.href = "http://127.0.0.1:5502/login.html";
+         }
+    
+  });
+
+  closeButton.addEventListener("click", () => {
+    profilePopup.style.display = "none";
+  });
+
+  // Hide profile pop-up
+  signOutButton.addEventListener("click", () => {
+    // Perform sign-out actions here (e.g., clear session, show a confirmation message, etc.)
+    // Example: Clear session storage
+    sessionStorage.clear();
+
+    // Show a confirmation message (optional)
+    alert("You have been signed out successfully.");
+
+    // Redirect the user to a different page after signing out
+    window.location.href = "http://127.0.0.1:5502/login.html";
+  });
+</script>
+<script src="script.js"></script>
+<script src="replace-vars.js"></script>
+<script type="text/javascript" src="email-form.js"></script>
+<script>
+  function cl() {
+    var user = document.getElementById("Google_Entry_ID_Name");
+    document.getElementById("Google_Entry_ID_Name").onfocus = function () {
+      this.style.border = "2px solid blue";
+      //this.style.backgroundColor='blue';
+    };
+    document
+      .getElementById("Google_Entry_ID_Name")
+      .addEventListener("blur", function () {
+        document.getElementById("Google_Entry_ID_Name").style.border = "none";
+        let x = user.value;
+
+        var p = /^[a-z]{3,}$/;
+        if (!x.match(p)) {
+          // this.focus();
+          document.getElementById("Google_Entry_ID_Name").value =
+            "invalid name";
+          document.getElementById("Google_Entry_ID_Name");
+          user.style.backgroundColor = "white";
+          user.style.border = "3px solid #d8252e ";
+          // document.getElementById("sub").addEventListener('submit',function(){
+          //   document.getElementById("sub").preventDefault();
+          // });
+          //  this.select();
+        } else {
+          user.style.backgroundColor = "white";
+          user.style.border = "3px solid #00a34a ";
+        }
+      });
+  }
+  function cl2() {
+    var user = document.getElementById("Google_Entry_ID_Email");
+    user.onfocus = function () {
+      this.style.border = "2px solid blue";
+      //this.style.backgroundColor='blue';
+    };
+    user.addEventListener("blur", function () {
+      user.style.border = "none";
+      let x = user.value;
+
+      var p = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if (!x.match(p)) {
+        // this.focus();
+        user.value = "invalid name";
+        user;
+        user.style.backgroundColor = "white";
+        user.style.border = "3px solid #d8252e ";
+        // document.getElementById("sub").addEventListener('submit',function(){
+        //   document.getElementById("sub").preventDefault();
+        // });
+        //  this.select();
+      } else {
+        user.style.backgroundColor = "white";
+        user.style.border = "3px solid #00a34a ";
+      }
+    });
+    document.getElementById("gform").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Get existing messages from local storage
+      var existingMessages = JSON.parse(localStorage.getItem("messages")) || [];
+
+      // Get form data
+      var formData = {
+        name: document.getElementById("Google_Entry_ID_Name").value,
+        email: document.getElementById("Google_Entry_ID_Email").value,
+        message: document.getElementById("Google_Entry_ID_TextArea").value,
+      };
+
+      // Add new message to the array
+      existingMessages.push(formData);
+
+      // Save updated messages array in local storage
+      localStorage.setItem("messages", JSON.stringify(existingMessages));
+
+      // Redirect to massage.html
+      window.location.href = "massage.html";
+    });
+  }
+</script>

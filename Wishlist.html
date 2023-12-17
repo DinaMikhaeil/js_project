@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wishlist</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      .wishlist-item {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+      }
+
+      .wishlist-item h3 {
+        color: #333;
+        margin-bottom: 5px;
+      }
+
+      .wishlist-item p {
+        color: #555;
+        margin: 5px 0;
+      }
+
+      .wishlist-item button {
+        background-color: #e74c3c;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 3px;
+      }
+
+      .wishlist-item button:hover {
+        background-color: #c0392b;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wishlist-container"></div>
+
+    <script>
+      // Wishlist Page
+      function load_wishlist() {
+
+var wishlists_Json = JSON.parse(localStorage.getItem("wishlists")) || [];
+var wishlistContainer = document.getElementById("wishlist-container");
+
+for (let i = 0; i < wishlists_Json.length; i++) {
+    if(wishlists_Json[i].email == sessionStorage.getItem("email"))
+    {
+        var wishlistItem = wishlists_Json[i];
+        console.log(wishlistItem);
+        // Create a div for each wishlist item
+        var wishlistItemDiv = document.createElement("div");
+        wishlistItemDiv.classList.add("wishlist-item");
+
+        // Display wishlist item data
+        wishlistItemDiv.innerHTML += `
+            <h3>${wishlistItem.page_product.Name}</h3>
+            <p>Category: ${wishlistItem.page_product.Category}</p>
+            <p>Price: ${wishlistItem.page_product.Price} $</p>
+            <!-- Add more information as needed -->
+
+            <!-- You can add buttons or links for further actions -->
+            <button onclick="removeFromWishlist(${i})">Remove from Wishlist</button>
+        `;
+
+        // Append the wishlist item div to the container
+        wishlistContainer.appendChild(wishlistItemDiv);
+    }
+    
+}
+}
+
+// Call this function when the wishlist page loads
+load_wishlist();
+
+// Function to remove an item from the wishlist
+function removeFromWishlist(index) {
+var wishlists_Json = JSON.parse(localStorage.getItem("wishlists")) || [];
+
+// Remove the item at the specified index
+wishlists_Json.splice(index, 1);
+
+// Update the local storage
+localStorage.setItem("wishlists", JSON.stringify(wishlists_Json));
+
+// Reload the wishlist to reflect the changes
+load_wishlist();
+}
+</script>
+  </body>
+</html>

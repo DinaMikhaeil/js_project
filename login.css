@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400&display=swap');
+
+body {
+    background-color: #E7E6E1;
+    font-family: 'Jost', sans-serif;
+}
+
+/*parent container*/
+.form-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    max-width: 720px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 2px solid #fff;
+    transform: translate(-50%, -50%);
+}
+
+/*close icon*/
+.form-popup span {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: #878484;
+    cursor: pointer;
+}
+
+/*sub parent "parent without close icon" floating*/
+.form-popup .form-box {
+    display: flex;
+}
+
+/*left div "image and details"*/
+.form-box .form-details {
+    max-width: 330px;
+    display: flex;
+    width: 100%;
+    color: #000;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url("sighnin.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.form-box h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/*right div "form container"*/
+.form-box .form-content {
+    width: 100%;
+    padding: 35px;
+}
+
+/*put label inside input text*/
+form .input-field {
+    width: 100%;
+    height: 50px;
+    margin-top: 20px;
+    position: relative;
+}
+
+/*input design*/
+form .input-field input {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    padding: 0 15px;
+    font-size: 0.95rem;
+    border-radius: 3px;
+    border: 1px solid #717171;
+}
+
+/*change border color while focus*/
+.input-field input:focus {
+    border-color: #00bcd4;
+}
+
+/*while focus and text input has value give padding to label and text field*/
+.input-field input:is(:focus, :valid) {
+    padding: 16px 15px 0;
+}
+
+/*label inside text field position and style */
+form .input-field label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    color: #717171;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: 0.2s ease;
+}
+
+/*label inside text field animation while text filed focus and has value*/
+.input-field input:is(:focus, :valid)~label {
+    color: #00bcd4;
+    font-size: 0.75rem;
+    transform: translateY(-120%);
+}
+
+/*signup style*/
+.form-box a {
+    color: #0097a7;
+    text-decoration: none;
+}
+
+/*signup hover*/
+.form-box a:hover {
+    text-decoration: underline;
+}
+
+/*button style*/
+form button {
+    width: 110%;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 14px 0;
+    border-radius: 3px;
+    margin: 25px 0;
+    color: #fff;
+    cursor: pointer;
+    background-color: #314E52;
+    transition: 0.2s ease;
+}
+
+/*button hover*/
+form button:hover {
+    background-color: #0097a7;
+}
+
+/*signup div*/
+.form-box .bottom-link {
+    text-align: center;
+}

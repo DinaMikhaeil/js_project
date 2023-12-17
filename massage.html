@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Messages Page</title>
+  <!-- Add your styling here -->
+  <!-- <link rel="stylesheet" href="path/to/your/style.css" /> -->
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f2f9f2;
+      font-family: "Montserrat", sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    .statistics-container {
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      border-radius: 4px;
+      font-size: 90%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      max-width: 400px;
+    }
+
+    .statistics-container h2 {
+      margin-bottom: 20px;
+    }
+
+    .statistics-container p {
+      margin: 10px 0;
+    }
+  </style>
+
+
+</head>
+<body>
+  <div id="messagesContent">
+    <!-- Display all form data from local storage -->
+    <h2>All Messages</h2>
+    <ul id="messagesList"></ul>
+  </div>
+  <br>
+  <hr>
+  <div class="statistics-container">
+    <h2>Feedback Statistics</h2>
+    <p><strong>Unhappy:</strong> <span id="unhappyCount">0</span> users</p>
+    <p><strong>Neutral:</strong> <span id="neutralCount">0</span> users</p>
+    <p><strong>Satisfied:</strong> <span id="satisfiedCount">0</span> users</p>
+  </div>
+
+
+  <script>
+    // Retrieve messages from local storage
+    var messages = JSON.parse(localStorage.getItem("messages")) || [];
+
+// Display messages on the page
+var messagesList = document.getElementById("messagesList");
+messages.forEach(function (formData) {
+  var listItem = document.createElement("li");
+  listItem.innerHTML =
+    "<strong>Name:</strong> " + formData.name + "<br>" +
+    "<strong>Email:</strong> " + formData.email + "<br>" +
+    "<strong>Message:</strong> " + formData.message + "<br><br>";
+  messagesList.appendChild(listItem);
+});
+
+// Retrieve and display feedback and rating
+// const storedFeedback = localStorage.getItem('userFeedback');
+// const storedRating = localStorage.getItem('userRating');
+// const feedbackMessageElement = document.getElementById('feedbackMessage');
+// const ratingMessageElement = document.getElementById('ratingMessage');
+// feedbackMessageElement.textContent = `Feedback: ${storedFeedback}`;
+// ratingMessageElement.textContent = `Rating: ${storedRating}/5`;
+
+// // Retrieve and display the number of Unhappy users
+// const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+// const unhappyUsersCount = reviews.filter(review => review.rating === 'Unhappy').length;
+// document.getElementById('unhappyUsers').textContent = `Number of Unhappy Users: ${unhappyUsersCount}`;
+ // Load existing reviews from local storage
+ const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+const ratingsCount = {
+  Unhappy: 0,
+  Neutral: 0,
+  Satisfied: 0,
+};
+
+reviews.forEach((review) => {
+  ratingsCount[review.rating]++;
+});
+
+document.getElementById("unhappyCount").innerText = ratingsCount.Unhappy;
+document.getElementById("neutralCount").innerText = ratingsCount.Neutral;
+document.getElementById("satisfiedCount").innerText = ratingsCount.Satisfied;
+
+  </script>
+  
+</body>
+</html>

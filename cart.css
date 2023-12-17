@@ -1,0 +1,276 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+
+body {
+    background-color: #E7E6E1;
+    scroll-behavior: smooth;
+    font-family: "Inter", sans-serif;
+}
+body button {
+    font-weight: 600;
+    height: 40px;
+    width: 170px;
+    background: black;
+    color: white;
+    border: 1px black solid;
+    cursor: pointer;
+    margin-right: 8px ;
+    font-family: "Inter", sans-serif;
+
+}
+
+body button:hover {
+    background: white;
+    color: black;
+    transition: 0.2s ease-in-out;
+  }
+
+
+table {
+    width: 80%;
+    position: absolute;
+    z-index: 2;
+    top: 30%;
+    left: 140px;
+    text-align: center;
+    background-color: #F7F6E7;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+    box-shadow: 0 12px 5px rgba(32, 32, 32, 0.3);
+    color: #314E52;
+    margin-bottom: 500px;
+}
+
+
+
+th {
+    background-color: #F2A154;
+    padding: 30px 0 30px 0;
+    font-size: 18px;
+}
+
+
+td {
+    padding: 10px 15px;
+}
+
+tr:nth-child(odd) {
+    background-color: #e6e5d7;
+}
+
+/* img {
+    width: 150xp;
+    height: 120px;
+    background-color: #314E52;
+} */
+
+#Quantity {
+    width: 40px;
+    padding: 8px;
+}
+
+#Remove {
+    width: 70%;
+    outline: none;
+    border: none;
+    font-size: 35px;
+    font-weight: 550;
+    padding: 10px 0;
+    border-radius: 3px;
+    margin: 25px 0;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+#Remove:hover {
+    color: red;
+}
+
+#accept {
+    outline: none;
+    border: none;
+    font-size: 30px;
+    font-weight: 550;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#accept:hover {
+    color: green;
+}
+
+#cancel {
+    outline: none;
+    margin-left: 15px;
+    border: none;
+    font-size: 30px;
+    font-weight: 550;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#cancel:hover {
+    color: red;
+}
+
+#parent{
+    position: relative;
+}
+
+#steven{
+    left: 50%;
+    position: absolute;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 80px;
+    background-color: white;
+    box-shadow: 0 1px 3px #8d8d8d;
+    position:relative;
+    top: 0;
+    left: 0;
+}
+#navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#navbar li {
+    list-style: none;
+    padding: 8px 20px;
+}
+#navbar li a {
+    text-decoration: none;
+    font-weight: 550;
+    color: black;
+    transition: 0.2s ease-in-out;
+}
+#navbar li a:hover {
+    color: #AF2655;
+}
+#navbar li a:active {
+    color: #BED754;
+}
+
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    padding: 20px 80px;
+    box-shadow: 0 -1px 3px #8d8d8d;
+    flex-wrap: wrap;
+    font-size: 14px;
+    color: black;
+    margin-top: 50px;
+    bottom: 0;
+    width: 88.15%;
+}
+#footer_bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#footer_bar li {
+    list-style: none;
+    padding: 0px 10px;
+}
+#footer_bar li a {
+    text-decoration: none;
+    color: black;
+    font-size: medium;
+    transition: 0.2s ease-in-out;
+}
+#footer_bar li a:hover {
+    color: #AF2655;
+}
+#footer_bar li a:active {
+    color: #BED754;
+}
+
+
+
+/* Profile Pop-up Styles */
+.popup {
+    position: fixed;
+    top: 40%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    display: none;
+  }
+
+  .profileContent {
+    text-align: center;
+    position: relative;
+  }
+
+  #profileImage {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  #closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  #userName {
+    margin-top: 10px;
+  }
+
+  #userEmail {
+    margin-top: 5px;
+    color: #888;
+  }
+
+  #signOutButton {
+    margin-top: 20px;
+    background-color: #6a5c5c;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    transition: scale 0.5s;
+  }
+  #signOutButton:hover {
+    cursor: pointer;
+    background-color: transparent;
+    color: black;
+    border: 2px solid #6a5c5c;
+    transform: scale(1.1);
+  }
+
+  /* Profile Button Styles */
+  #profile {
+    /* background-color: #007bff;
+    color: #fff; */
+    text-decoration: none;
+    font-weight: 550;
+    color: black;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+  }
+
+
+#profile:hover {
+    color: #AF2655;
+}
+#profile:active {
+    color: #BED754;
+}

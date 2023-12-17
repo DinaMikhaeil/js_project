@@ -1,0 +1,115 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fontawesome-free-6.5.1-web/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>Product</title>
+</head>
+<body onload="get_product_details()">
+    <header>
+        <a href="index.html"><img src="logo.png" width="90px" height="90px"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="aboutus.html">About</a></li>
+                <li><a href="ContactUs.html">Contact</a></li>
+                <li class="headerIcons"><i class="fa-regular fa-user" title="Profile" id="profile" ></i></li>
+                <div id="profilePopup" class="popup">
+                    <div class="profileContent">
+                      <i class="fas fa-times" id="closeButton"></i>
+                      <img id="profileImage" src="post-img2.jpg" alt="Profile Image" />
+                      <h2 id="userName">User Name</h2>
+                      <p id="userEmail">user@example.com</p>
+                      <button onclick="window.location.href='feedback.html';"class="signOutButton">feedback</button>
+                      <button id="signOutButton">Sign Out</button>
+                    </div>
+                  </div>
+                <li class="headerIcons"><a href="#" title="Cart" id="cart" onclick="return user_logged_in_cart()"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                <li class="headerIcons"><a href="#" title="Wishlist" id="wishlist" onclick="return user_logged_in_wish()"><i class="fa-regular fa-heart"></i></a></li>
+                <li class="headerIcons"><a href="#" title="orders" id="orders" onclick="return go_to_orders()"><i class="fa-solid fa-list-check"></i></a></li>
+            
+            </ul>
+        </div>
+      </header>
+    <section id="product_details">
+        <div class="single_product_image">
+            <img src="" id="main-image" alt="product-image" width="100%">
+        </div>
+        <div class="single_product_details">
+            <h5 id="product_category"></h6>
+            <h1 id="product_name"></h2>
+            <h3 id="product_price"></h3>
+            <input type="number" value="0" min="1" id="quantity">
+            <span id="product_stock_quantity"></span> &nbsp;
+            <button onclick="add_to_cart()">Add To Cart</button>
+            <button onclick="add_to_wishlist()">Add To Wishlist</button>
+            <button onclick="edit_product()" id="edit_product_button">Edit Product</button>
+            <button onclick="delete_product()" id="delete_product_button">Delete Product</button>
+
+            <h4>Describtion</h4>
+            <span id="product_describtion"></span>
+            <br />
+        </div>
+    </section>
+    <footer>
+        <p>Copyrights &copy;2023. All Rights Reserved. — Designed by our Team</p>
+        <ul id="footer_bar">
+            <li>Follow Us</li>
+            <li><a href="https://www.facebook.com" title="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+            <li><a href="https://www.x.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a></li>
+            <li><a href="https://www.instagram.com" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+        </ul>
+    </footer>
+    <script>
+          // Get elements
+          const profile = document.getElementById("profile");
+         const profilePopup = document.getElementById("profilePopup");
+         const signOutButton = document.getElementById("signOutButton");
+         const closeButton = document.getElementById("closeButton");
+         const userNameElement = document.getElementById("userName");
+         const userEmailElement = document.getElementById("userEmail");
+   
+         // Function to update profile information
+         function updateProfileInfo() {
+           // Retrieve username and email from session storage
+           const storedUsername = sessionStorage.getItem("username");
+           const storedEmail = sessionStorage.getItem("email");
+   
+           // Update the profile pop-up elements with the retrieved values
+           userNameElement.textContent = storedUsername || "User Name";
+           userEmailElement.textContent = storedEmail || "user@example.com";
+         }
+   
+         // Show profile pop-up
+         profile.addEventListener("click", () => {
+            if(sessionStorage.getItem("username") != null){
+                updateProfileInfo(); // Call the function to update profile information
+                profilePopup.style.display = "block";                }
+            else{
+                window.location.href = "http://127.0.0.1:5502/login.html";
+                }
+           
+         });
+   
+         closeButton.addEventListener("click", () => {
+           profilePopup.style.display = "none";
+         });
+   
+         // Hide profile pop-up
+         signOutButton.addEventListener("click", () => {
+           // Perform sign-out actions here (e.g., clear session, show a confirmation message, etc.)
+           // Example: Clear session storage
+           sessionStorage.clear();
+   
+           // Show a confirmation message (optional)
+           alert("You have been signed out successfully.");
+   
+           // Redirect the user to a different page after signing out
+           window.location.href = "http://127.0.0.1:5502/login.html";
+         });
+    </script>
+</body>
+</html>

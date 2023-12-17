@@ -1,0 +1,149 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fontawesome-free-6.5.1-web/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>Shop</title>
+</head>
+<body onload="load_shop()">
+    <header>
+        <a href="index.html"><img src="logo.png" width="90px" height="90px"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="aboutus.html">About</a></li>
+                <li><a href="ContactUs.html">Contact</a></li>
+                <li class="headerIcons"><i class="fa-regular fa-user" title="Profile" id="profile" ></i></li>
+                <div id="profilePopup" class="popup">
+                    <div class="profileContent">
+                      <i class="fas fa-times" id="closeButton"></i>
+                      <img id="profileImage" src="post-img2.jpg" alt="Profile Image" />
+                      <h2 id="userName">User Name</h2>
+                      <p id="userEmail">user@example.com</p>
+                      <button onclick="window.location.href='feedback.html';"class="signOutButton">feedback</button>
+                      <button id="signOutButton">Sign Out</button>
+                    </div>
+                  </div>
+                <li class="headerIcons"><a href="#" title="Cart" id="cart" onclick="return user_logged_in_cart()"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                <li class="headerIcons"><a href="#" title="Wishlist" id="wishlist" onclick="return user_logged_in_wish()"><i class="fa-regular fa-heart"></i></a></li>
+                <li class="headerIcons"><a href="#" title="orders" id="orders" onclick="return go_to_orders()"><i class="fa-solid fa-list-check"></i></a></li>
+            
+            </ul>
+        </div>
+      </header>
+    <div id="shop_header">
+        <h1>Shop</h1>
+        <p><a href="index.html">Home</a>&nbsp;/ Shop</p>
+    </div>
+    <aside id="filter_section">
+        <h3>Filter By:</h3>
+        <h4>Category</h4>
+        <div id="category_filter_div">
+        <!--
+            <input type="radio" name="categroy" value="Jackets" id="Jackets" onchange="get_checked_category_filter()">
+            <label for="Jackets">Jackets</label>
+            <br /> 
+        -->
+        <br />
+        </div>
+        <h4>Price</h4>
+        <input type="radio" name="price" value="up_to_200" name="up_to_200" id="up_to_200" onchange="get_checked_price_filter()">
+        <label for="up_to_200">0$-200$</label>
+        <br />
+        <input type="radio" name="price" value="200_to_600" name="200_to_600" id="200_to_600" onchange="get_checked_price_filter()">
+        <label for="200_to_600">200$-600$</label>
+        <br />
+        <input type="radio" name="price" value="600_to_1000" name="600_to_1000" id="600_to_1000" onchange="get_checked_price_filter()">
+        <label for="600_to_1000">600$-1000$</label>
+        <br />
+        <input type="radio" name="price" value="higher_than_1000" name="higher_than_1000" id="higher_than_1000" onchange="get_checked_price_filter()">
+        <label for="higher_than_1000">>1000$</label>
+        <br />
+    </aside>
+    <section id="shop">
+            <section id="product_sec">
+<!-- example of what will be shown:
+                <div class="product_small">
+                    <img src="product_test_img.jpg">
+                    <div class="product_small_details">
+                        <h3>Winter Jacket</h3>
+                        <h5>500$</h6>
+                        <div class="product_small_details_icons">
+                            <i title="Add To Cart" class="fa-solid fa-cart-shopping"></i>
+                            <i title="Add To Wishlist" class="fa-regular fa-heart"></i>
+                        </div>
+                    </div>
+                </div> -->
+            </section>
+    </section>
+    <section id="pageNum">
+        <button onclick="go_to_add_product_page()" id="add_product_button">Add Product</button>
+    </section>
+    <!-- <section id="pageNum">
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+    </section> -->
+    <footer>
+        <p>Copyrights &copy;2023. All Rights Reserved. — Designed by our Team</p>
+        <ul id="footer_bar">
+            <li>Follow Us</li>
+            <li><a href="https://www.facebook.com" title="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
+            <li><a href="https://www.x.com" title="Twitter"><i class="fa-brands fa-twitter"></i></a></li>
+            <li><a href="https://www.instagram.com" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+        </ul>
+    </footer>
+    <script>
+          // Get elements
+          const profile = document.getElementById("profile");
+         const profilePopup = document.getElementById("profilePopup");
+         const signOutButton = document.getElementById("signOutButton");
+         const closeButton = document.getElementById("closeButton");
+         const userNameElement = document.getElementById("userName");
+         const userEmailElement = document.getElementById("userEmail");
+   
+         // Function to update profile information
+         function updateProfileInfo() {
+           // Retrieve username and email from session storage
+           const storedUsername = sessionStorage.getItem("username");
+           const storedEmail = sessionStorage.getItem("email");
+   
+           // Update the profile pop-up elements with the retrieved values
+           userNameElement.textContent = storedUsername || "User Name";
+           userEmailElement.textContent = storedEmail || "user@example.com";
+         }
+   
+         // Show profile pop-up
+         profile.addEventListener("click", () => {
+            if(sessionStorage.getItem("username") != null){
+                updateProfileInfo(); // Call the function to update profile information
+                profilePopup.style.display = "block";                }
+            else{
+                window.location.href = "http://127.0.0.1:5502/login.html";
+                }
+           
+         });
+   
+         closeButton.addEventListener("click", () => {
+           profilePopup.style.display = "none";
+         });
+   
+         // Hide profile pop-up
+         signOutButton.addEventListener("click", () => {
+           // Perform sign-out actions here (e.g., clear session, show a confirmation message, etc.)
+           // Example: Clear session storage
+           sessionStorage.clear();
+   
+           // Show a confirmation message (optional)
+           alert("You have been signed out successfully.");
+   
+           // Redirect the user to a different page after signing out
+           window.location.href = "http://127.0.0.1:5502/login.html";
+         });
+    </script>
+</body>
+</html>
