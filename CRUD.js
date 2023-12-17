@@ -36,6 +36,10 @@ if (localStorage.getItem("products")) {
         alert("Name cannot be empty");
         return;
     }
+      if (isFinite(name)) {
+    alert("Name can not be number");
+    return;
+  }
 
     var existingName = categories.find((d) => d.name === name);
     if (existingName) {
